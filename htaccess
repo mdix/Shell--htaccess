@@ -10,7 +10,7 @@ fi
 echo $1;
 if [ "$1" == "" ];
   then
-    echo 'Usage: gimmehtaccess USERNAME';
+    echo 'Usage: htaccess USERNAME';
     exit 1
 fi
 
