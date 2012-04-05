@@ -1,0 +1,28 @@
+#!/bin/bash
+USER=`whoami`
+PATH=`pwd`
+if [ $USER != 'root' ];
+  then
+    echo 'Please go root!';
+    exit 1
+fi
+
+echo $1;
+if [ "$1" == "" ];
+  then
+    echo 'Usage: gimmehtaccess USERNAME';
+    exit 1
+fi
+
+/bin/touch .htaccess
+/bin/touch .htpasswd
+
+echo "AuthUserFile $PATH/.htpasswd" > .htaccess
+echo 'AuthName "Login"' >> .htaccess
+echo 'AuthType Basic' >> .htaccess
+echo '<Limit GET>' >> .htaccess
+echo 'require valid-user' >> .htaccess
+echo '</Limit>' >> .htaccess
+echo 'Options -Indexes' >> .htaccess
+
+/usr/sbin/htpasswd $PATH/.htpasswd $1
