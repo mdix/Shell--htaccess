@@ -1,7 +1,6 @@
 #!/bin/bash
-USER=`whoami`
 PATH=`pwd`
-if [ $USER != 'root' ];
+if [ $UID != 0 ];
   then
     echo 'Please go root!';
     exit 1
